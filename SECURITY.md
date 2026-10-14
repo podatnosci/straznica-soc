@@ -5,7 +5,7 @@ Strażnica SOC jest narzędziem bezpieczeństwa, więc zgłoszenia podatności t
 **Nie zgłaszaj podatności w publicznych Issues.** Napisz prywatnie:
 
 - przez [prywatne zgłoszenie podatności na GitHubie](https://github.com/podatnosci/straznica-soc/security/advisories/new) (zakładka *Security → Report a vulnerability*), albo
-- e-mailem: [adres do zgłoszeń bezpieczeństwa].
+- e-mailem: podatnosci@wp.pl.
 
 W zgłoszeniu podaj: wersję (`straznica-server.exe --version`), opis problemu, kroki odtworzenia i możliwy wpływ. Nie dołączaj danych osobowych ani logów z cudzej infrastruktury.
 
