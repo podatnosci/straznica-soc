@@ -83,7 +83,6 @@ Strażnica SOC to oprogramowanie komercyjne — [warunki licencji](LICENSE.md).
 
 ## Kontakt, pilotaż i licencje
 
-Szukam **pierwszych firm na pilotaż** na preferencyjnych warunkach oraz **partnerów IT / MSSP**.
 Napisz na LinkedIn: **[Piotr Pęsiek](https://www.linkedin.com/in/pesiek/)** — chętnie pokażę demo na Twoich logach.
 
 Błędy i propozycje zmian: [Issues](https://github.com/podatnosci/straznica-soc/issues). Podatności bezpieczeństwa: [SECURITY.md](SECURITY.md).
