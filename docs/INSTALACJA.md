@@ -92,4 +92,4 @@ Kopia zapasowa: zatrzymaj usługę i skopiuj cały katalog `C:\ProgramData\Straz
 | Agent nie wysyła danych | `powershell -ExecutionPolicy Bypass -File "C:\Program Files\Straznica SOC Agent\StraznicaAgent.ps1" -Test` |
 | „Limit hostów licencji” | nowe agenty ponad limit nie są przyjmowane — sprawdź **Ustawienia → Licencja** |
 
-Problem, którego tu nie ma? [Zgłoś go w Issues](https://github.com/podatnosci/straznica-soc/issues) — dołącz wersję (`--version`) i ostatnie linie dziennika (bez danych firmy).
+Problem, którego tu nie ma? [Zgłoś go w Issues](https://github.com/podatnosci/straznica-soc/issues) — dołącz wersję (`--version`) i ostatnie linie dziennika (bez danych firmy)
