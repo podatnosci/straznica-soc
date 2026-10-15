@@ -1,6 +1,6 @@
 # Historia zmian
 
-## 2.5.0 — 2026-10-14
+## 2.5.0 2026-10-14
 
 **Nowe**
 - Licencja i 30-dniowa wersja próbna (Ustawienia → Licencja): limit hostów z agentem i klientów, okres karencji 14 dni, zbieranie logów i wykrywanie działają zawsze.
