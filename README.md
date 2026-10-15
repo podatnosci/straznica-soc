@@ -52,7 +52,7 @@ Pliki są w zakładce [**Releases**](https://github.com/podatnosci/straznica-soc
 | `StraznicaAgent-Setup.exe` | agent Windows zbierający dzienniki zdarzeń (do pobrania także z konsoli serwera) |
 | `StraznicaSOC-Konsola-Setup-2.5.0.exe` | konsola analityka; bez serwera działa offline i analizuje pliki logów |
 | `install-straznica-agent-linux.sh` | agent Linux (journald, auditd, pliki logów) |
-| `Straznica-SOC-offline.html` | konsola offline w jednym pliku, wystarczy przeglądarka |
+| `Straznica-SOC-portable.exe` | konsola offline w jednym pliku |
 | `SHA256SUMS.txt` | sumy kontrolne plików |
 
 Instalatory są podpisane cyfrowo (wydawca: Piotr Pęsiek). Przy pierwszym uruchomieniu Windows SmartScreen może pokazać ostrzeżenie, wybierz „Więcej informacji” → „Uruchom mimo to”. Sprawdzenie sumy: `Get-FileHash .\StraznicaSOC-Serwer-Setup-2.5.0.exe` i porównanie z `SHA256SUMS.txt`.
