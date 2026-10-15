@@ -8,7 +8,7 @@
 - NIS2/KSC: raport pośredni na żądanie CSIRT i sprawozdanie z postępu dla incydentów trwających w terminie sprawozdania końcowego.
 
 **Zmiany**
-- Detekcja ciągła dociąga tylko nowe zdarzenia zamiast odczytywać całe okno — przy ok. 1 mln zdarzeń na dobę jeden przebieg trwa ok. 3 razy krócej.
+- Detekcja ciągła dociąga tylko nowe zdarzenia zamiast odczytywać całe okno, przy ok. 1 mln zdarzeń na dobę jeden przebieg trwa ok. 3 razy krócej.
 
 **Poprawki**
 - Termin sprawozdania końcowego NIS2 liczony od zgłoszenia incydentu (wcześniej od wykrycia).
