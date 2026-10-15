@@ -87,9 +87,9 @@ Kopia zapasowa: zatrzymaj usługę i skopiuj cały katalog `C:\ProgramData\Straz
 
 | Objaw | Co sprawdzić |
 |---|---|
-| `ERR_CONNECTION_REFUSED` na https://localhost:8443 | `Get-Service StraznicaSOC` — jeśli `Stopped`, zobacz dziennik w `C:\ProgramData\StraznicaSOC\logs`; port może być zajęty przez inny program |
-| Ostrzeżenie przeglądarki o certyfikacie | certyfikat jest samopodpisany — pobierz `https://SERWER:8443/download/server.crt` i dodaj do zaufanych (lub wdroż przez GPO) |
+| `ERR_CONNECTION_REFUSED` na https://localhost:8443 | `Get-Service StraznicaSOC`, jeśli `Stopped`, zobacz dziennik w `C:\ProgramData\StraznicaSOC\logs`; port może być zajęty przez inny program |
+| Ostrzeżenie przeglądarki o certyfikacie | certyfikat jest self signed, pobierz `https://SERWER:8443/download/server.crt` i dodaj do zaufanych (lub wdroż przez GPO) |
 | Agent nie wysyła danych | `powershell -ExecutionPolicy Bypass -File "C:\Program Files\Straznica SOC Agent\StraznicaAgent.ps1" -Test` |
-| „Limit hostów licencji” | nowe agenty ponad limit nie są przyjmowane — sprawdź **Ustawienia → Licencja** |
+| „Limit hostów licencji” | nowe agenty ponad limit nie są przyjmowane, sprawdź **Ustawienia → Licencja** |
 
-Problem, którego tu nie ma? [Zgłoś go w Issues](https://github.com/podatnosci/straznica-soc/issues) — dołącz wersję (`--version`) i ostatnie linie dziennika (bez danych firmy)
+Problem, którego tu nie ma? [Zgłoś go w Issues](https://github.com/podatnosci/straznica-soc/issues), dołącz wersję (`--version`) i ostatnie linie dziennika (bez danych firmy)
