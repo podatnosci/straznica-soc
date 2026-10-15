@@ -89,4 +89,4 @@ Błędy i propozycje zmian: [Issues](https://github.com/podatnosci/straznica-soc
 
 ---
 
-© 2026 Piotr Pęsiek. Wszelkie prawa zastrzeżone. Strażnica SOC korzysta z komponentów open source — lista i licencje w pliku `SKLADNIKI.txt` w katalogu instalacji.
+© 2026 Piotr Pęsiek. Wszelkie prawa zastrzeżone. Strażnica SOC korzysta z komponentów open source, lista i licencje w pliku `SKLADNIKI.txt` w katalogu instalacji.
