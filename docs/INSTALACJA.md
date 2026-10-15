@@ -34,11 +34,11 @@ StraznicaSOC-Serwer-Setup-2.5.0.exe /S /PORT=8443 /SYSLOGPORT=514
 | Pamięć | 4 GB RAM | 8–16 GB RAM |
 | Dysk | 40 GB | SSD |
 
-Porty przychodzące: **8443/TCP** (konsola, agenci, serwer zapasowy), **514/UDP i TCP** (syslog). Konsoli nie publikuj w Internecie — udostępniaj ją w sieci wewnętrznej lub przez VPN.
+Porty przychodzące: **8443/TCP** (konsola, agenci, serwer zapasowy), **514/UDP i TCP** (syslog). Konsoli nie publikuj w Internecie, udostępniaj ją w sieci wewnętrznej lub przez VPN.
 
 ## Licencja
 
-Bez klucza serwer działa **30 dni w pełnej wersji** (do 25 hostów z agentem i 2 dodatkowych klientów). Klucz licencyjny wklej w **Ustawienia → Licencja** albo zapisz jako `C:\ProgramData\StraznicaSOC\licencja.txt` — serwer wczyta go przy starcie. W tej samej zakładce jest identyfikator instalacji, jeśli licencja ma być przypięta do jednego serwera.
+Bez klucza serwer działa **30 dni w pełnej wersji** (do 25 hostów z agentem i 2 dodatkowych klientów). Klucz licencyjny wklej w **Ustawienia → Licencja** albo zapisz jako `C:\ProgramData\StraznicaSOC\licencja.txt`, serwer wczyta go przy starcie. W tej samej zakładce jest identyfikator instalacji, jeśli licencja ma być przypięta do jednego serwera.
 
 Po wygaśnięciu licencji przez 14 dni działa okres karencji, potem konsola przechodzi w tryb tylko do odczytu. **Zbieranie logów, wykrywanie i powiadomienia działają zawsze.**
 
