@@ -2,7 +2,7 @@
 
 # 🛡️ Strażnica SOC
 
-**Polski SIEM i system obsługi incydentów — wykrywa ataki, wskazuje ich przyczynę i prowadzi zespół do zgłoszenia w CSIRT w terminach NIS2/KSC.**
+**Polski SIEM i system obsługi incydentów,który wykrywa ataki, wskazuje ich przyczynę i prowadzi zespół do zgłoszenia w CSIRT w terminach NIS2/KSC.**
 
 Działa lokalnie na Windows Server · bez chmury · bez opłat za gigabajt logów · konsola po polsku i angielsku
 
@@ -29,7 +29,7 @@ Działa lokalnie na Windows Server · bez chmury · bez opłat za gigabajt logó
 | 📋 **Zgłoszenia** | formularze NIS2/KSC na każdy etap: wczesne ostrzeżenie 24 h, zgłoszenie 72 h, raport pośredni, sprawozdanie z postępu, sprawozdanie końcowe; zgłoszenie naruszenia do UODO (art. 33 RODO), klasyfikacja i raporty DORA; przypomnienia o terminach |
 | ⚡ **Reakcja** | zawsze po zatwierdzeniu przez człowieka: blokada adresu na FortiGate, pfSense i MikroTik, odcięcie konta w AD i Entra ID, izolacja komputera w Microsoft Defender |
 | 👥 **Praca zespołu** | incydenty z SLA i playbookami, oś czasu incydentu, wyszukiwarka z językiem zapytań, dyżury i eskalacja (SMS, połączenie, powiadomienie), Jira / ServiceNow / GLPI, raporty PDF z logo firmy |
-| 🔐 **Rozliczalność** | role (odczyt, analityk, kierownik, administrator), dziennik audytu chroniony łańcuchem skrótów HMAC — wykrywa zmianę lub usunięcie wpisu |
+| 🔐 **Rozliczalność** | role (odczyt, analityk, kierownik, administrator), dziennik audytu chroniony łańcuchem skrótów HMAC, wykrywa zmianę lub usunięcie wpisu |
 | 🏢 **Skala** | tryb wielu klientów (usługi SOC), serwer zapasowy przejmujący pracę przy awarii, archiwum zdarzeń z sumami SHA-256 |
 
 ### Przyczyna alertu wskazana automatycznie
@@ -52,10 +52,10 @@ Pliki są w zakładce [**Releases**](https://github.com/podatnosci/straznica-soc
 | `StraznicaAgent-Setup.exe` | agent Windows zbierający dzienniki zdarzeń (do pobrania także z konsoli serwera) |
 | `StraznicaSOC-Konsola-Setup-2.5.0.exe` | konsola analityka; bez serwera działa offline i analizuje pliki logów |
 | `install-straznica-agent-linux.sh` | agent Linux (journald, auditd, pliki logów) |
-| `Straznica-SOC-offline.html` | konsola offline w jednym pliku — wystarczy przeglądarka |
+| `Straznica-SOC-offline.html` | konsola offline w jednym pliku, wystarczy przeglądarka |
 | `SHA256SUMS.txt` | sumy kontrolne plików |
 
-Instalatory są podpisane cyfrowo (wydawca: Piotr Pęsiek). Przy pierwszym uruchomieniu Windows SmartScreen może pokazać ostrzeżenie — wybierz „Więcej informacji” → „Uruchom mimo to”. Sprawdzenie sumy: `Get-FileHash .\StraznicaSOC-Serwer-Setup-2.5.0.exe` i porównanie z `SHA256SUMS.txt`.
+Instalatory są podpisane cyfrowo (wydawca: Piotr Pęsiek). Przy pierwszym uruchomieniu Windows SmartScreen może pokazać ostrzeżenie, wybierz „Więcej informacji” → „Uruchom mimo to”. Sprawdzenie sumy: `Get-FileHash .\StraznicaSOC-Serwer-Setup-2.5.0.exe` i porównanie z `SHA256SUMS.txt`.
 
 ## Szybki start
 
@@ -69,21 +69,21 @@ Szczegóły, wymagania i porty: [docs/INSTALACJA.md](docs/INSTALACJA.md).
 
 - Windows Server 2016+ lub Windows 10/11, 64-bit; minimum 2 vCPU, 4 GB RAM, 40 GB dysku
 - do 1 mln zdarzeń na dobę: 8 GB RAM i dysk SSD
-- porty: 8443/TCP (konsola i agenci), 514/UDP+TCP (syslog) — można zmienić w instalatorze
+- porty: 8443/TCP (konsola i agenci), 514/UDP+TCP (syslog), można to zmienić w instalatorze
 - Internet tylko dla funkcji, które go wymagają (reputacja adresów, wskaźniki zagrożeń, chmura)
 
 ## Licencja i wersja próbna
 
-Strażnica SOC to oprogramowanie komercyjne — [warunki licencji](LICENSE.md).
+Strażnica SOC to oprogramowanie komercyjne [warunki licencji](LICENSE.md).
 
 - **30 dni pełnej wersji za darmo**, bez rejestracji: do 25 hostów z agentem i 2 dodatkowych klientów.
 - Licencja roczna zależna od liczby hostów z agentem; urządzenia syslog i źródła chmurowe bez limitu, bez opłat za ilość logów.
-- Po wygaśnięciu licencji zbieranie logów i wykrywanie **działają dalej** — konsola przechodzi w tryb tylko do odczytu.
+- Po wygaśnięciu licencji zbieranie logów i wykrywanie **działają dalej**, konsola przechodzi w tryb tylko do odczytu.
 - Konsola offline do analizy plików jest bezpłatna.
 
 ## Kontakt, pilotaż i licencje
 
-Napisz na LinkedIn: **[Piotr Pęsiek](https://www.linkedin.com/in/pesiek/)** — chętnie pokażę demo na Twoich logach.
+Napisz na LinkedIn: **[Piotr Pęsiek](https://www.linkedin.com/in/pesiek/)** chętnie pokażę demo na Twoich logach.
 
 Błędy i propozycje zmian: [Issues](https://github.com/podatnosci/straznica-soc/issues). Podatności bezpieczeństwa: [SECURITY.md](SECURITY.md).
 
