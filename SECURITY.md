@@ -15,9 +15,9 @@ Co obiecuję:
 |---|---|
 | potwierdzenie otrzymania | do 3 dni roboczych |
 | wstępna ocena | do 10 dni roboczych |
-| poprawka dla podatności krytycznych i wysokich | najszybciej, jak to możliwe — zwykle do 30 dni |
+| poprawka dla podatności krytycznych i wysokich | najszybciej, jak to możliwe, zwykle do 30 dni |
 
-Po wydaniu poprawki opiszę podatność w informacji o wydaniu i — jeśli chcesz — podziękuję Ci z imienia i nazwiska.
+Po wydaniu poprawki opiszę podatność w informacji o wydaniu i jeśli chcesz, podziękuję Ci z imienia i nazwiska.
 
 ## Wspierane wersje
 
