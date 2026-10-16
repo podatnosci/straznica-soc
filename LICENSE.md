@@ -43,7 +43,7 @@ Licencjobiorca nie może, chyba że bezwzględnie obowiązujące przepisy stanow
 
 ## 6. Komponenty open source
 
-Oprogramowanie zawiera komponenty open source (m.in. Node.js — licencja MIT, fonty IBM Plex — SIL OFL, bazy geolokalizacji i reguły Sigma na własnych licencjach). Ich licencje są wymienione w pliku `SKLADNIKI.txt` i mają pierwszeństwo przed niniejszą Umową w zakresie tych komponentów.
+Oprogramowanie zawiera komponenty open source (m.in. Node.js, licencja MIT, fonty IBM Plex, SIL OFL, bazy geolokalizacji i reguły Sigma na własnych licencjach). Ich licencje są wymienione w pliku `SKLADNIKI.txt` i mają pierwszeństwo przed niniejszą Umową w zakresie tych komponentów.
 
 ## 7. Dane i prywatność
 
