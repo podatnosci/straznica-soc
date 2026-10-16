@@ -1,7 +1,5 @@
 # Umowa licencyjna użytkownika końcowego (EULA) Strażnica SOC
 
-> **Wzór do weryfikacji przez prawnika przed rozpoczęciem sprzedaży.** Uzupełnij dane w nawiasach kwadratowych.
-
 **Wersja 1.0 z dnia 14-10-2026**
 
 ## 1. Strony i definicje
