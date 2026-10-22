@@ -23,5 +23,6 @@ Po wydaniu poprawki opiszę podatność w informacji o wydaniu i jeśli chcesz, 
 
 | Wersja | Poprawki bezpieczeństwa |
 |---|---|
+| 2.6.x | ✅ |
 | 2.5.x | ✅ |
 | < 2.5 | ❌ — zaktualizuj do najnowszej wersji |

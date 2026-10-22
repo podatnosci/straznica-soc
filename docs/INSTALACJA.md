@@ -1,8 +1,8 @@
-# Instalacja Strażnicy SOC 2.5
+# Instalacja Strażnicy SOC 2.6
 
 ## Serwer
 
-1. Uruchom `StraznicaSOC-Serwer-Setup-2.5.0.exe` **jako administrator**. Jeśli Windows SmartScreen pokaże ostrzeżenie, wybierz „Więcej informacji” → „Uruchom mimo to”.
+1. Uruchom `StraznicaSOC-Serwer-Setup-2.6.1.exe` **jako administrator**. Jeśli Windows SmartScreen pokaże ostrzeżenie, wybierz „Więcej informacji” → „Uruchom mimo to”.
 2. Na stronie „Ustawienia sieci” podaj porty (domyślnie 8443 dla konsoli i 514 dla syslog). Pozostaw zaznaczone dodanie certyfikatu do zaufanych i otwarcie portów w Zaporze Windows.
 3. Instalator:
    - kopiuje program do `C:\Program Files\Straznica SOC`;
@@ -20,7 +20,7 @@ Get-Content C:\ProgramData\StraznicaSOC\logs\*.log -Tail 30
 Instalacja cicha:
 
 ```
-StraznicaSOC-Serwer-Setup-2.5.0.exe /S /PORT=8443 /SYSLOGPORT=514
+StraznicaSOC-Serwer-Setup-2.6.1.exe /S /PORT=8443 /SYSLOGPORT=514
 ```
 
 **Aktualizacja** — uruchom nowy instalator na istniejącej instalacji. Dane zostają, baza aktualizuje się przy starcie. Przed aktualizacją skopiuj katalog `C:\ProgramData\StraznicaSOC`.
@@ -71,7 +71,7 @@ Agent zbiera journald (SSH, sudo, konta, zapora), auditd i wskazane pliki logów
 
 ## Konsola analityka
 
-`StraznicaSOC-Konsola-Setup-2.5.0.exe` instaluje się bez uprawnień administratora. Podaj adres serwera, aby pracować na serwerze; puste pole uruchamia **tryb offline** do analizy plików logów na komputerze (bez wysyłania danych).
+`StraznicaSOC-Konsola-Setup-2.6.1.exe` instaluje się bez uprawnień administratora. Podaj adres serwera, aby pracować na serwerze; puste pole uruchamia **tryb offline** do analizy plików logów na komputerze (bez wysyłania danych).
 
 ## Polecenia serwisowe
 
@@ -93,3 +93,13 @@ Kopia zapasowa: zatrzymaj usługę i skopiuj cały katalog `C:\ProgramData\Straz
 | „Limit hostów licencji” | nowe agenty ponad limit nie są przyjmowane, sprawdź **Ustawienia → Licencja** |
 
 Problem, którego tu nie ma? [Zgłoś go w Issues](https://github.com/podatnosci/straznica-soc/issues), dołącz wersję (`--version`) i ostatnie linie dziennika (bez danych firmy)
+
+## Aktualizacja z wersji 2.5
+
+Uruchom instalator 2.6.1 na istniejącym serwerze — dane, ustawienia i licencja zostają. Warto wiedzieć:
+
+- **Licencja obejmuje wersje wydane do końca wsparcia.** Jeśli wsparcie Twojej licencji skończyło się przed datą wydania 2.6.1 (22.10.2026), po aktualizacji masz 14 dni na odnowienie wsparcia albo powrót do wersji 2.5 — potem konsola działa tylko do odczytu (zbieranie logów i wykrywanie działają nadal).
+- **Logowanie SSO, LDAP i weryfikacja dwuetapowa** są wyłączone, dopóki ich nie skonfigurujesz w Ustawienia → Logowanie i SSO.
+- **Metryki** (`/metrics`) są domyślnie wyłączone — włączysz je w Ustawienia → Metryki.
+- **UEBA** zaczyna uczyć się zachowania kont od razu; pierwsze alerty pojawią się po okresie nauki (domyślnie 14 dni).
+- Serwer zapasowy aktualizuj razem z głównym (synchronizuje m.in. klucze API i klucz szyfrowania weryfikacji dwuetapowej).
