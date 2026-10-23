@@ -1,8 +1,8 @@
-# Instalacja Strażnicy SOC 2.6
+# Instalacja Strażnicy SOC 2.7
 
 ## Serwer
 
-1. Uruchom `StraznicaSOC-Serwer-Setup-2.6.1.exe` **jako administrator**. Jeśli Windows SmartScreen pokaże ostrzeżenie, wybierz „Więcej informacji” → „Uruchom mimo to”.
+1. Uruchom `StraznicaSOC-Serwer-Setup-2.7.0.exe` **jako administrator**. Jeśli Windows SmartScreen pokaże ostrzeżenie, wybierz „Więcej informacji” → „Uruchom mimo to”.
 2. Na stronie „Ustawienia sieci” podaj porty (domyślnie 8443 dla konsoli i 514 dla syslog). Pozostaw zaznaczone dodanie certyfikatu do zaufanych i otwarcie portów w Zaporze Windows.
 3. Instalator:
    - kopiuje program do `C:\Program Files\Straznica SOC`;
@@ -20,7 +20,7 @@ Get-Content C:\ProgramData\StraznicaSOC\logs\*.log -Tail 30
 Instalacja cicha:
 
 ```
-StraznicaSOC-Serwer-Setup-2.6.1.exe /S /PORT=8443 /SYSLOGPORT=514
+StraznicaSOC-Serwer-Setup-2.7.0.exe /S /PORT=8443 /SYSLOGPORT=514
 ```
 
 **Aktualizacja** — uruchom nowy instalator na istniejącej instalacji. Dane zostają, baza aktualizuje się przy starcie. Przed aktualizacją skopiuj katalog `C:\ProgramData\StraznicaSOC`.
@@ -53,6 +53,8 @@ StraznicaAgent-Setup.exe /S /SERVER=https://soc.firma.local:8443 /TOKEN=sa_xxxxx
 
 Agent zbiera dzienniki Security, System, PowerShell, Sysmon i Defender i wysyła nowe zdarzenia co 30 sekund. Instalator włącza zalecaną politykę audytu (`/NOAUDIT` ją pomija). Najlepsze wyniki daje dodatkowo Sysmon.
 
+Od 2.7 agent może też monitorować integralność plików i kluczy rejestru oraz pliki-kanarki — włączysz to w **Ustawienia → Integralność plików** (konfiguracja trafia do agentów automatycznie).
+
 ## Agent Linux
 
 W **Ustawienia → Agenci i syslog** utwórz token i skopiuj polecenie z sekcji „Agent Linux”, np.:
@@ -62,7 +64,7 @@ curl -k --pinnedpubkey 'sha256//…' -o install-straznica-agent.sh https://soc.f
 sudo STRAZNICA_TOKEN='sa_…' bash install-straznica-agent.sh --server https://soc.firma.local:8443 --pin 'sha256//…'
 ```
 
-Agent zbiera journald (SSH, sudo, konta, zapora), auditd i wskazane pliki logów. Wymaga bash, curl i gzip.
+Agent zbiera journald (SSH, sudo, konta, zapora), auditd i wskazane pliki logów, a od 2.7 — po włączeniu w konsoli — monitoruje integralność plików (FIM). Wymaga bash, curl, gzip i sha256sum.
 
 ## Syslog i źródła chmurowe
 
@@ -71,7 +73,7 @@ Agent zbiera journald (SSH, sudo, konta, zapora), auditd i wskazane pliki logów
 
 ## Konsola analityka
 
-`StraznicaSOC-Konsola-Setup-2.6.1.exe` instaluje się bez uprawnień administratora. Podaj adres serwera, aby pracować na serwerze; puste pole uruchamia **tryb offline** do analizy plików logów na komputerze (bez wysyłania danych).
+`StraznicaSOC-Konsola-Setup-2.7.0.exe` instaluje się bez uprawnień administratora. Podaj adres serwera, aby pracować na serwerze; puste pole uruchamia **tryb offline** do analizy plików logów na komputerze (bez wysyłania danych).
 
 ## Polecenia serwisowe
 
@@ -94,9 +96,20 @@ Kopia zapasowa: zatrzymaj usługę i skopiuj cały katalog `C:\ProgramData\Straz
 
 Problem, którego tu nie ma? [Zgłoś go w Issues](https://github.com/podatnosci/straznica-soc/issues), dołącz wersję (`--version`) i ostatnie linie dziennika (bez danych firmy)
 
+## Aktualizacja do wersji 2.7
+
+Uruchom instalator 2.7.0 na istniejącym serwerze — dane, ustawienia i licencja zostają. Warto wiedzieć:
+
+- **Nowe funkcje nie wymagają innej licencji.** Jeśli wsparcie licencji skończyło się przed datą wydania 2.7.0 (23.10.2026), po aktualizacji masz 14 dni na odnowienie wsparcia albo powrót do 2.6.1.
+- **Asystent AI jest wyłączony**, dopóki administrator go nie skonfiguruje (Ustawienia → Asystent AI). Bez tego żadne dane nie są wysyłane do modeli językowych.
+- **Adres-pułapka** `https://serwer:8443/c/<token>` jest dostępny bez logowania (tak ma działać). Jeśli konsola jest za zaporą, pułapki URL zadziałają tylko w sieci, z której serwer jest osiągalny.
+- **Wykrywanie nowych urządzeń** zaczyna od 7-dniowego okresu nauki — w tym czasie zapamiętuje sieć bez alertów.
+- **Agentów** zaktualizuj, jeśli chcesz używać integralności plików i plików-kanarków; starsze agenty działają dalej.
+- Ustaw **kopię konfiguracji** (Ustawienia → Kopia konfiguracji) i zapisz jej hasło w sejfie haseł.
+
 ## Aktualizacja z wersji 2.5
 
-Uruchom instalator 2.6.1 na istniejącym serwerze — dane, ustawienia i licencja zostają. Warto wiedzieć:
+Uruchom instalator 2.6.1 lub nowszy na istniejącym serwerze — dane, ustawienia i licencja zostają. Warto wiedzieć:
 
 - **Licencja obejmuje wersje wydane do końca wsparcia.** Jeśli wsparcie Twojej licencji skończyło się przed datą wydania 2.6.1 (22.10.2026), po aktualizacji masz 14 dni na odnowienie wsparcia albo powrót do wersji 2.5 — potem konsola działa tylko do odczytu (zbieranie logów i wykrywanie działają nadal).
 - **Logowanie SSO, LDAP i weryfikacja dwuetapowa** są wyłączone, dopóki ich nie skonfigurujesz w Ustawienia → Logowanie i SSO.

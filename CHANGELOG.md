@@ -1,5 +1,28 @@
 # Historia zmian
 
+## 2.7.0 — 2026-10-23
+
+**Nowe**
+- Własne parsery logów bez programowania: wyrażenie regularne z grupami nazwanymi, CSV/TSV albo JSON, mapowanie pól, format czasu, reguły rodzaju zdarzenia i test na próbce; także dla syslogu na żywo i w konsoli offline.
+- Pułapki (honeytokeny): konto AD, plik-przynęta, klucz AWS, nazwa DNS, adres URL/niewidoczny obrazek, hasło, e-mail, udział sieciowy; gotowe przynęty do pobrania. Każde użycie to alert krytyczny HONEY-01.
+- Wczesne wykrywanie ransomware (RANSOM-01): kilka sygnałów przygotowania do szyfrowania na jednym hoście w krótkim czasie; pliki-kanarki w udziałach (RANSOM-02).
+- Integralność plików i rejestru (FIM) w agentach Windows i Linux (FIM-01): pliki systemowe, autostart, usługi, sudoers, klucze SSH.
+- Reguły YARA (silnik wbudowany, także offline): skan wczytanych plików, załączników poczty i incydentów oraz próbek z agentów (YARA-01).
+- Wykrywanie nowych urządzeń w sieci z DHCP, skanów, przepływów i agentów (ASSET-01), z producentem z adresu MAC.
+- Łańcuch dowodowy w incydencie i pakiet dowodowy ZIP z manifestem SHA-256 podpisanym kluczem Ed25519 instalacji.
+- Portal klienta dla usług SOC (rola „Klient”): podsumowanie bezpieczeństwa i raport PDF bez dostępu do szczegółów technicznych.
+- Ćwiczenia tabletop: trzy scenariusze (ransomware, przejęcie skrzynki zarządu, nieuczciwy pracownik), ocena czasu reakcji zespołu, raport, automatyczne sprzątanie.
+- Powiadomienia przez Telegram i Signal.
+- Asystent AI (domyślnie wyłączony): podsumowanie incydentu, proponowane kroki, szkic zgłoszenia do CSIRT, wyjaśnienie alertu, pytania w języku naturalnym; model lokalny lub chmurowy zgodny z OpenAI, pseudonimizacja danych, podgląd wysyłanych danych, wpis w dzienniku audytu.
+- Archiwum dzienników kopiowane poza serwer: Amazon S3 i zgodne (MinIO, Wasabi, Backblaze B2), Azure Blob, udział sieciowy.
+- Zaszyfrowana kopia całej konfiguracji (AES-256-GCM) z harmonogramem i przywracaniem.
+- Raport gotowości NIS2 (art. 21 ust. 2 lit. a–j, art. 23) z dowodami automatycznymi i deklaracjami.
+- Własne pulpity z kafelkami (liczniki z progami, wykresy, najczęstsze wartości, alerty, terminy NIS2, pułapki), także offline.
+
+**Zmiany**
+- Agenci 2.7.0 (Windows, Linux) obsługują FIM i pliki-kanarki; starsze wersje agentów działają bez zmian.
+- Nowe funkcje nie wymagają dodatkowych modułów licencji.
+
 ## 2.6.1 — 2026-10-22
 
 **Nowe**
