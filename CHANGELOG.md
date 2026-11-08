@@ -1,6 +1,6 @@
 # Historia zmian
 
-## 2.8.0 — 2026-11-08
+## 2.8.0 2026-11-08
 
 **Nowe**
 
@@ -28,7 +28,7 @@
 - Nagłówek konsoli nie wychodzi poza ekran na telefonie.
 - Nowe funkcje nie wymagają dodatkowych modułów licencji.
 
-## 2.7.0 — 2026-10-23
+## 2.7.0 2026-10-23
 
 **Nowe**
 - Własne parsery logów bez programowania: wyrażenie regularne z grupami nazwanymi, CSV/TSV albo JSON, mapowanie pól, format czasu, reguły rodzaju zdarzenia i test na próbce; także dla syslogu na żywo i w konsoli offline.
@@ -51,7 +51,7 @@
 - Agenci 2.7.0 (Windows, Linux) obsługują FIM i pliki-kanarki; starsze wersje agentów działają bez zmian.
 - Nowe funkcje nie wymagają dodatkowych modułów licencji.
 
-## 2.6.1 — 2026-10-22
+## 2.6.1 2026-10-22
 
 **Nowe**
 - Ok. 100 nowych formatów plików i logów, w konsoli offline i na serwerze (także syslog na żywo): antywirusy i EDR (ESET PROTECT, Kaspersky Security Center, Bitdefender GravityZone, CrowdStrike Falcon, Sophos Central, Arcabit, mks_vir), zapory i VPN (Stormshield, Check Point, Juniper SRX, Meraki, Aruba, UniFi, NPS/RADIUS, OpenVPN, strongSwan, WireGuard), BIND, Unbound, ModSecurity, fail2ban, FTP, VMware ESXi i vCenter, Proxmox, Synology, QNAP, Veeam, MSSQL, MySQL/MariaDB, PostgreSQL, AD FS, Kubernetes, Docker, GitHub/GitLab, AWS ALB/S3/CloudFront/GuardDuty, Elastic ECS, OCSF, Hayabusa, Chainsaw, Velociraptor, EZTools, historia PowerShell/bash, zadania harmonogramu, wtmp/btmp, .xlsx, .nessus, Nmap, mbox, gałęzie rejestru Windows, historia Chrome/Edge/Firefox, Prefetch, SRUM, .pst/.ost, NetFlow v5/v9/IPFIX; archiwa .7z, .xz, .bz2, .zst.
