@@ -22,7 +22,7 @@ Działa lokalnie na Windows Server · bez chmury · bez opłat za gigabajt logó
 
 | Obszar | Co robi |
 |---|---|
-| 🔎 **Wykrywanie** | ponad 100 wbudowanych reguł zmapowanych na MITRE ATT&CK, import reguł Sigma i YARA, odchylenia od normy dla kont i hostów, wskaźniki zagrożeń z MISP, TAXII 2.1, abuse.ch, listy ostrzeżeń CERT Polska i platformy **n6 CERT Polska**; **test wykrywania** — scenariusze technik ataku sprawdzane z Twoją konfiguracją |
+| 🔎 **Wykrywanie** | ponad 100 wbudowanych reguł zmapowanych na MITRE ATT&CK, import reguł Sigma i YARA, odchylenia od normy dla kont i hostów, wskaźniki zagrożeń z MISP, TAXII 2.1, abuse.ch, listy ostrzeżeń CERT Polska i platformy **n6 CERT Polska**; **test wykrywania**, cenariusze technik ataku sprawdzane z Twoją konfiguracją |
 | 🎯 **Ryzyko i mniej szumu** | **wynik ryzyka 0–100 dla każdego konta i hosta** łączący alerty z wielu reguł i etapów ataku; **wyjątki alertów** z powodem, datą wygaśnięcia i licznikiem ukrytych alertów |
 | 🩹 **Podatności** | rejestr ustaleń z Nessus, OpenVAS i Nmap, **katalog CISA KEV** (podatności wykorzystywane w atakach, także w ransomware), EPSS, priorytet, akceptacja ryzyka; alerty z podatnych hostów dostają wyższą ważność |
 | 🌐 **Domeny i wycieki** | nowe certyfikaty dla Twoich domen (Certificate Transparency), domeny łudząco podobne (phishing, oszustwa na „zmianę konta”), konta firmowe w wyciekach (Have I Been Pwned) |
@@ -72,7 +72,7 @@ Pliki są w zakładce [**Releases**](https://github.com/podatnosci/straznica-soc
 
 | Plik | Do czego |
 |---|---|
-| `StraznicaSOC-Serwer-Setup-2.8.0.exe` | serwer centralny z konsolą WWW (Windows Server 2016–2025, Windows 10/11, 64-bit) |
+| `StraznicaSOC-Serwer-Setup-2.8.0.exe` | serwer centralny z konsolą WWW (Windows Server od 2016 do 2025, Windows 10/11, 64-bit) |
 | `StraznicaAgent-Setup.exe` | agent Windows zbierający dzienniki zdarzeń (do pobrania także z konsoli serwera) |
 | `install-straznica-agent-linux.sh` | agent Linux (journald, auditd, pliki logów) |
 | `install-straznica-agent-macos.sh` | agent macOS 12+ (dziennik ujednolicony, pliki logów, integralność plików) |
