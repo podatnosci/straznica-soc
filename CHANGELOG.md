@@ -1,5 +1,33 @@
 # Historia zmian
 
+## 2.8.0 — 2026-11-08
+
+**Nowe**
+
+- Zarządzanie podatnościami (nowa zakładka „Podatności”): rejestr ustaleń z Nessus, OpenVAS i Nmap, katalog CISA KEV (podatności wykorzystywane w atakach, w tym w ransomware), opcjonalnie EPSS, priorytet 0–100, automatyczne oznaczanie usuniętych po ponownym skanie, akceptacja ryzyka z uzasadnieniem, eksport CSV. Alert VULN-02 dla hostów z podatnością z KEV; alerty dotyczące takich hostów mają podniesioną ważność.
+- Rejestr dostawców ICT: łańcuch dostaw (NIS2 art. 21 ust. 2 lit. d) i rejestr informacji DORA (art. 28 ust. 3): krytyczność, dane osobowe, podwykonawcy, umowy, strategia wyjścia, przeglądy, kwestionariusz bezpieczeństwa (PDF), przypomnienia, eksport CSV.
+- n6 CERT Polska: zdarzenia o zagrożeniach w sieci organizacji (zainfekowane hosty, C&C, phishing, skanowanie, podatne usługi), alert N6-01.
+- Ocena ryzyka kont i hostów (nowa zakładka „Ryzyko”): wynik 0–100 z alertów, wygasanie w czasie, różnorodność reguł i etapów ATT&CK, krytyczność zasobu, podatności KEV; alert RISK-01 po przekroczeniu progu.
+- Wyjątki alertów: reguła + pole + wartość (także zakres CIDR), powód i data wygaśnięcia, licznik ukrytych alertów, podgląd przed zapisaniem, „Wyjątek…” bezpośrednio z alertu.
+- Test reguł: 13 scenariuszy technik ATT&CK sprawdzanych z bieżącą konfiguracją detekcji, z przyczyną niewykrycia (reguła wyłączona, próg, parser).
+- Automatyzacje (KIEDY → WTEDY): incydent lub dołączenie do otwartego, przypisanie, potwierdzenie, ważność, notatka, powiadomienie, znacznik, wniosek o akcję reakcji (zawsze do zatwierdzenia przez człowieka); gotowe szablony, test na alertach z 7 dni, dziennik uruchomień.
+- Nowe akcje reakcji: izolacja przez CrowdStrike Falcon i SentinelOne, usunięcie wiadomości ze wszystkich skrzynek Microsoft 365 (z cofnięciem), wymuszenie zmiany hasła w Entra ID i Active Directory.
+- Monitorowanie domen i wycieków: nowe certyfikaty dla domen organizacji (Certificate Transparency, CT-01), domeny łudząco podobne (LOOK-01), konta w znanych wyciekach — Have I Been Pwned (LEAK-01).
+- Przekazanie zmiany (nowa zakładka „Zmiana”): podsumowanie dyżuru z terminami NIS2 i SLA w ciągu doby, przekazanie z uwagami i potwierdzenie przejęcia, raport PDF.
+- Raport kwartalny dla zarządu (PDF) z porównaniem okresów i rekomendacjami; ewidencja szkoleń członków zarządu (art. 20 ust. 2 NIS2).
+- Mapowanie dowodów na ISO/IEC 27001:2022 (załącznik A) z raportem PDF.
+- Retencja zdarzeń według źródła (np. przepływy 7 dni, logowania 365 dni).
+- Agent macOS (dziennik ujednolicony, pliki logów, FIM i pliki-kanarki; usługa launchd).
+- Serwer w kontenerze: Dockerfile i docker-compose.
+- Konsola jako aplikacja na telefon (PWA) — wymaga zaufanego certyfikatu serwera.
+
+**Zmiany**
+
+- Alert PHISH-01 zawiera nagłówek Message-ID wiadomości (podstawa usunięcia jej z innych skrzynek).
+- Gotowość NIS2: nowe dowody automatyczne (dostawcy, KEV, test wykrywania, szkolenia zarządu) — dochodzą tylko wtedy, gdy dany rejestr jest używany.
+- Nagłówek konsoli nie wychodzi poza ekran na telefonie.
+- Nowe funkcje nie wymagają dodatkowych modułów licencji.
+
 ## 2.7.0 — 2026-10-23
 
 **Nowe**
