@@ -17,7 +17,6 @@ Działa lokalnie na Windows Server · bez chmury · bez opłat za gigabajt logó
 - **Podmioty kluczowe i ważne według ustawy o KSC (NIS2)**, które muszą wykryć incydent i wysłać wczesne ostrzeżenie do CSIRT w ciągu 24 h.
 - **Średnie firmy bez własnego SOC**: jeden informatyk albo mały zespół, który potrzebuje gotowych reguł zamiast budowy platformy od zera.
 - **Firmy IT i MSSP** świadczące usługi monitoringu: tryb wielu klientów z osobną bazą dla każdego.
-- **Audytorzy i zespoły reagowania**: konsola offline analizuje pliki logów bez instalowania serwera.
 
 ## Co potrafi
 
@@ -75,7 +74,6 @@ Pliki są w zakładce [**Releases**](https://github.com/podatnosci/straznica-soc
 |---|---|
 | `StraznicaSOC-Serwer-Setup-2.8.0.exe` | serwer centralny z konsolą WWW (Windows Server 2016–2025, Windows 10/11, 64-bit) |
 | `StraznicaAgent-Setup.exe` | agent Windows zbierający dzienniki zdarzeń (do pobrania także z konsoli serwera) |
-| `StraznicaSOC-Konsola-Setup-2.8.0.exe` | konsola analityka; bez serwera działa offline i analizuje pliki logów |
 | `install-straznica-agent-linux.sh` | agent Linux (journald, auditd, pliki logów) |
 | `install-straznica-agent-macos.sh` | agent macOS 12+ (dziennik ujednolicony, pliki logów, integralność plików) |
 | `SHA256SUMS.txt` | sumy kontrolne plików |
@@ -104,7 +102,6 @@ Strażnica SOC to oprogramowanie komercyjne [warunki licencji](LICENSE.md).
 - **30 dni pełnej wersji za darmo**, bez rejestracji: do 25 hostów z agentem i 2 dodatkowych klientów.
 - Edycje Standard, Pro i Enterprise; licencja roczna zależna od liczby hostów z agentem; urządzenia syslog i źródła chmurowe bez limitu, bez opłat za ilość logów.
 - Po wygaśnięciu licencji zbieranie logów i wykrywanie **działają dalej**, konsola przechodzi w tryb tylko do odczytu.
-- Konsola offline do analizy plików jest bezpłatna.
 
 ## Kontakt, pilotaż i licencje
 

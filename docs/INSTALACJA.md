@@ -82,10 +82,6 @@ Agent działa jako usługa systemowa launchd (`pl.straznica.agent`) i zbiera z d
 - Firewalle, routery i przełączniki: skieruj syslog na adres serwera, port 514 (UDP lub TCP). Format rozpoznawany jest automatycznie (m.in. FortiGate, Palo Alto, Sophos, MikroTik, Cisco, pfSense, CEF/LEEF).
 - Microsoft 365, Entra ID, Defender, Google Workspace, AWS, Azure: **Ustawienia → Chmura** (wymaga rejestracji aplikacji u dostawcy — opis przy każdym źródle).
 
-## Konsola analityka
-
-`StraznicaSOC-Konsola-Setup-2.8.0.exe` instaluje się bez uprawnień administratora. Podaj adres serwera, aby pracować na serwerze; puste pole uruchamia **tryb offline** do analizy plików logów na komputerze (bez wysyłania danych).
-
 ## Konsola na telefonie
 
 Konsolę serwera można zainstalować na telefonie jak aplikację (Chrome i Edge: „Zainstaluj aplikację”, Safari: „Do ekranu początkowego”) — przydaje się na dyżurze do potwierdzania alertów, przekazania zmiany i zatwierdzania akcji reakcji. Wymaga certyfikatu serwera zaufanego przez telefon; przy certyfikacie samopodpisanym konsola działa w przeglądarce, ale bez instalacji. Dane nie są przechowywane na telefonie.
