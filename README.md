@@ -90,7 +90,7 @@ Szczegóły, wymagania i porty: [docs/INSTALACJA.md](docs/INSTALACJA.md).
 
 ## Wymagania
 
-- Windows Server 2016+ lub Windows 10/11, 64-bit; minimum 2 vCPU, 4 GB RAM, 40 GB dysku (dla wdrożeń na Linuksie dostępny obraz Docker — zapytaj o niego przy pilotażu)
+- Windows Server 2016+ lub Windows 10/11, 64-bit; minimum 2 vCPU, 4 GB RAM, 40 GB dysku (dla wdrożeń na Linuksie dostępny obraz Docker, zapytaj o niego przy pilotażu)
 - do 1 mln zdarzeń na dobę: 8 GB RAM i dysk SSD
 - porty: 8443/TCP (konsola i agenci), 514/UDP+TCP (syslog), można to zmienić w instalatorze
 - Internet tylko dla funkcji, które go wymagają (reputacja adresów, wskaźniki zagrożeń, chmura)
