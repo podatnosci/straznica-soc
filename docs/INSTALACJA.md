@@ -1,8 +1,8 @@
-# Instalacja Strażnicy SOC 2.7
+# Instalacja Strażnicy SOC 2.8
 
 ## Serwer
 
-1. Uruchom `StraznicaSOC-Serwer-Setup-2.7.0.exe` **jako administrator**. Jeśli Windows SmartScreen pokaże ostrzeżenie, wybierz „Więcej informacji” → „Uruchom mimo to”.
+1. Uruchom `StraznicaSOC-Serwer-Setup-2.8.0.exe` **jako administrator**. Jeśli Windows SmartScreen pokaże ostrzeżenie, wybierz „Więcej informacji” → „Uruchom mimo to”.
 2. Na stronie „Ustawienia sieci” podaj porty (domyślnie 8443 dla konsoli i 514 dla syslog). Pozostaw zaznaczone dodanie certyfikatu do zaufanych i otwarcie portów w Zaporze Windows.
 3. Instalator:
    - kopiuje program do `C:\Program Files\Straznica SOC`;
@@ -20,7 +20,7 @@ Get-Content C:\ProgramData\StraznicaSOC\logs\*.log -Tail 30
 Instalacja cicha:
 
 ```
-StraznicaSOC-Serwer-Setup-2.7.0.exe /S /PORT=8443 /SYSLOGPORT=514
+StraznicaSOC-Serwer-Setup-2.8.0.exe /S /PORT=8443 /SYSLOGPORT=514
 ```
 
 **Aktualizacja** — uruchom nowy instalator na istniejącej instalacji. Dane zostają, baza aktualizuje się przy starcie. Przed aktualizacją skopiuj katalog `C:\ProgramData\StraznicaSOC`.
@@ -66,6 +66,17 @@ sudo STRAZNICA_TOKEN='sa_…' bash install-straznica-agent.sh --server https://s
 
 Agent zbiera journald (SSH, sudo, konta, zapora), auditd i wskazane pliki logów, a od 2.7 — po włączeniu w konsoli — monitoruje integralność plików (FIM). Wymaga bash, curl, gzip i sha256sum.
 
+## Agent macOS
+
+Od 2.8. W **Ustawienia → Agenci i syslog** skopiuj polecenie z sekcji „Agent macOS” i uruchom je w Terminalu na Macu (macOS 12 lub nowszy, konto administratora):
+
+```bash
+curl -k --pinnedpubkey 'sha256//…' -o install-straznica-agent-macos.sh https://soc.firma.local:8443/download/agent-macos.sh
+sudo STRAZNICA_TOKEN='sa_…' bash install-straznica-agent-macos.sh --server https://soc.firma.local:8443 --pin 'sha256//…'
+```
+
+Agent działa jako usługa systemowa launchd (`pl.straznica.agent`) i zbiera z dziennika ujednoliconego logowania SSH, sudo/su, okno logowania, udostępnianie ekranu, autoryzacje oraz zdarzenia XProtect i Gatekeeper; obsługuje też pliki logów, integralność plików i pliki-kanarki. Korzysta wyłącznie z narzędzi systemu (bez Homebrew). Dziennik agenta: `/Library/Logs/straznica-agent.log`. Odinstalowanie: `sudo bash install-straznica-agent-macos.sh --uninstall`. Przy zarządzaniu przez MDM możesz nadać `/bin/bash` pełny dostęp do dysku (profil PPPC), żeby monitorowanie plików obejmowało katalogi chronione przez macOS.
+
 ## Syslog i źródła chmurowe
 
 - Firewalle, routery i przełączniki: skieruj syslog na adres serwera, port 514 (UDP lub TCP). Format rozpoznawany jest automatycznie (m.in. FortiGate, Palo Alto, Sophos, MikroTik, Cisco, pfSense, CEF/LEEF).
@@ -73,7 +84,11 @@ Agent zbiera journald (SSH, sudo, konta, zapora), auditd i wskazane pliki logów
 
 ## Konsola analityka
 
-`StraznicaSOC-Konsola-Setup-2.7.0.exe` instaluje się bez uprawnień administratora. Podaj adres serwera, aby pracować na serwerze; puste pole uruchamia **tryb offline** do analizy plików logów na komputerze (bez wysyłania danych).
+`StraznicaSOC-Konsola-Setup-2.8.0.exe` instaluje się bez uprawnień administratora. Podaj adres serwera, aby pracować na serwerze; puste pole uruchamia **tryb offline** do analizy plików logów na komputerze (bez wysyłania danych).
+
+## Konsola na telefonie
+
+Konsolę serwera można zainstalować na telefonie jak aplikację (Chrome i Edge: „Zainstaluj aplikację”, Safari: „Do ekranu początkowego”) — przydaje się na dyżurze do potwierdzania alertów, przekazania zmiany i zatwierdzania akcji reakcji. Wymaga certyfikatu serwera zaufanego przez telefon; przy certyfikacie samopodpisanym konsola działa w przeglądarce, ale bez instalacji. Dane nie są przechowywane na telefonie.
 
 ## Polecenia serwisowe
 
@@ -95,6 +110,18 @@ Kopia zapasowa: zatrzymaj usługę i skopiuj cały katalog `C:\ProgramData\Straz
 | „Limit hostów licencji” | nowe agenty ponad limit nie są przyjmowane, sprawdź **Ustawienia → Licencja** |
 
 Problem, którego tu nie ma? [Zgłoś go w Issues](https://github.com/podatnosci/straznica-soc/issues), dołącz wersję (`--version`) i ostatnie linie dziennika (bez danych firmy)
+
+## Aktualizacja do wersji 2.8
+
+Uruchom instalator 2.8.0 na istniejącym serwerze — dane, ustawienia i licencja zostają; aktualizacja obejmuje też zmiany z 2.7 (opis niżej). Warto wiedzieć:
+
+- **Nowe funkcje nie wymagają innej licencji.** Jeśli wsparcie licencji skończyło się przed datą wydania 2.8.0 (8.11.2026), po aktualizacji masz 14 dni na odnowienie wsparcia.
+- **Podatności:** wczytaj wynik skanera (Nessus, OpenVAS, Nmap) — rejestr zbuduje się sam. Katalog CISA KEV pobiera się raz na dobę (wymaga dostępu do cisa.gov); EPSS włączysz w zakładce Podatności.
+- **n6 CERT Polska** i **monitorowanie domen i wycieków** są wyłączone, dopóki ich nie skonfigurujesz (klucz API n6 z portalu n6, domeny organizacji, opcjonalnie klucz Have I Been Pwned).
+- **Ocena ryzyka** działa od razu na alertach z ostatnich 7 dni; próg alertu RISK-01 (domyślnie 60) zmienisz w zakładce Ryzyko.
+- **Automatyzacje** nie robią nic, dopóki ich nie utworzysz (gotowe szablony w Ustawienia → Automatyzacje). Akcje reakcji z automatyzacji zawsze czekają na zatwierdzenie.
+- **Nowe akcje reakcji** (CrowdStrike, SentinelOne, usuwanie wiadomości z Microsoft 365) włączysz w Ustawienia → Reakcja. Usuwanie wiadomości wymaga uprawnienia aplikacji Mail.ReadWrite w Microsoft Graph.
+- Po aktualizacji uruchom **Ustawienia → Test reguł** — pokaże, czy Twoje progi i wyłączone reguły nie ukrywają podstawowych ataków.
 
 ## Aktualizacja do wersji 2.7
 
