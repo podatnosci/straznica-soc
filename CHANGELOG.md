@@ -1,5 +1,20 @@
 # Historia zmian
 
+## 2.8.1 2026-11-09
+
+**Nowe**
+
+- Automatyczny test wykrywania: uruchamia się sam kilka sekund po każdej zmianie wyjątków alertów, progów, wyłączeń reguł, whitelisty, reguł własnych i Sigma (seria zmian daje jeden przebieg), a także raz na dobę. Bez zmian konfiguracji test się nie powtarza.
+- Alert RT-01: scenariusz, który był wykrywany, a po zmianie przestał być wykrywany, tworzy alert (powiadomienia jak dla innych alertów) z przyczyną, listą zmian od poprzedniego testu i ich autorami z dziennika audytu. Ważność wysoka, krytyczna przy utracie wykrywania m.in. zrzutu LSASS, usunięcia kopii cieni, dodania do administratorów, czyszczenia dziennika. Alert zamyka się sam, gdy wykrywanie wróci.
+- Cofnięcie zmiany jednym kliknięciem z zakładki Test reguł: wyłączenie wyjątku, ponowne włączenie reguły albo przywrócenie ustawień detekcji z ostatniego udanego testu (z listą zmienianych ustawień). Zmianę zamierzoną można zaakceptować z uzasadnieniem — obecny stan staje się punktem odniesienia.
+- Nowe scenariusze testu (16 zamiast 13): dodanie konta do grupy Domain Admins (4728, wymagana ważność co najmniej wysoka), utworzenie konta w domenie (4720), blokada konta (4740).
+- Historia testów (ostatnie 30 przebiegów: wyzwalacz, autor zmian, wynik, regresje, alert) i ustawienia testu automatycznego.
+
+**Poprawki**
+
+- Test wykrywania uwzględnia wyjątki alertów (2.8.0 je pomijał, więc wyjątek wyciszający całą regułę dawał nadal 100%). Przyczyna „ukryte wyjątkiem” wskazuje konkretny wyjątek; test nie zwiększa licznika trafień wyjątku.
+- Alerty RT-01 nie podlegają wyjątkom i nie wpływają na ocenę ryzyka.
+
 ## 2.8.0 2026-11-08
 
 **Nowe**
