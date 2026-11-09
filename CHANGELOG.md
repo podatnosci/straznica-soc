@@ -1,5 +1,16 @@
 # Historia zmian
 
+## 2.8.2 2026-11-09
+
+**Nowe**
+
+- Raport kwartalny dla zarządu: sekcja „Strojenie a skuteczność wykrywania” z porównaniem do poprzedniego okresu — liczba zmian strojenia (wyjątki, progi, wyłączenia, reguły), uruchomione testy wykrywania (w tym automatyczne), odsetek testów z pełnym wykryciem, wynik na koniec okresu, alerty odfiltrowane strojeniem i ograniczenie szumu, wykryte regresje z medianą czasu naprawy, liczba świadomie zaakceptowanych luk.
+- Zdanie do slajdu, budowane wyłącznie z danych, np. „SOC zmniejszył szum o 38% i nie stracił żadnego podstawowego wykrycia — po 47 zmianach strojenia wszystkie 16 podstawowych technik ataku nadal są wykrywane, a jedną regresję wyłapano i naprawiono w 6 min”. Gdy są zaakceptowane luki, otwarte regresje albo brak testów, zdanie mówi to wprost i nie twierdzi, że wykrywanie jest pełne. Widoczne także w Ustawienia → Zarząd z przyciskiem „Kopiuj”.
+- Lista świadomie zaakceptowanych luk w wykrywaniu: scenariusz i technika ATT&CK, kto i kiedy zaakceptował, uzasadnienie, przyczyna oraz czy luka nadal istnieje. Rekomendacja dla zarządu, gdy luki pozostają lub regresje są otwarte.
+- Rejestr regresji wykrywania: czas wykrycia, przyczyna, autor zmiany, sposób zamknięcia (cofnięcie z testu, późniejsza zmiana, akceptacja z uzasadnieniem) i czas do zamknięcia.
+- Historia testów wykrywania w osobnej tabeli z retencją 2 lata (wcześniej 30 ostatnich przebiegów) — pozwala zestawiać kwartały. Historia z 2.8.1 jest przenoszona automatycznie.
+- Dzienny licznik alertów odfiltrowanych wyjątkami (podstawa wskaźnika ograniczenia szumu; zliczany od 2.8.2 — dla wcześniejszych okresów zdanie do slajdu porównuje liczbę alertów kwartał do kwartału).
+
 ## 2.8.1 2026-11-09
 
 **Nowe**
