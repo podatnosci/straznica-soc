@@ -2,7 +2,7 @@
 
 ## Serwer
 
-1. Uruchom `StraznicaSOC-Serwer-Setup-2.8.0.exe` **jako administrator**. Jeśli Windows SmartScreen pokaże ostrzeżenie, wybierz „Więcej informacji” → „Uruchom mimo to”.
+1. Uruchom `StraznicaSOC-Serwer-Setup-2.8.1.exe` **jako administrator**. Jeśli Windows SmartScreen pokaże ostrzeżenie, wybierz „Więcej informacji” → „Uruchom mimo to”.
 2. Na stronie „Ustawienia sieci” podaj porty (domyślnie 8443 dla konsoli i 514 dla syslog). Pozostaw zaznaczone dodanie certyfikatu do zaufanych i otwarcie portów w Zaporze Windows.
 3. Instalator:
    - kopiuje program do `C:\Program Files\Straznica SOC`;
@@ -20,7 +20,7 @@ Get-Content C:\ProgramData\StraznicaSOC\logs\*.log -Tail 30
 Instalacja cicha:
 
 ```
-StraznicaSOC-Serwer-Setup-2.8.0.exe /S /PORT=8443 /SYSLOGPORT=514
+StraznicaSOC-Serwer-Setup-2.8.1.exe /S /PORT=8443 /SYSLOGPORT=514
 ```
 
 **Aktualizacja** — uruchom nowy instalator na istniejącej instalacji. Dane zostają, baza aktualizuje się przy starcie. Przed aktualizacją skopiuj katalog `C:\ProgramData\StraznicaSOC`.
@@ -109,7 +109,7 @@ Problem, którego tu nie ma? [Zgłoś go w Issues](https://github.com/podatnosci
 
 ## Aktualizacja do wersji 2.8
 
-Uruchom instalator 2.8.0 na istniejącym serwerze — dane, ustawienia i licencja zostają; aktualizacja obejmuje też zmiany z 2.7 (opis niżej). Warto wiedzieć:
+Uruchom instalator 2.8.1 na istniejącym serwerze (także z 2.8.0) — dane, ustawienia i licencja zostają; aktualizacja obejmuje też zmiany z 2.7 (opis niżej). Warto wiedzieć:
 
 - **Nowe funkcje nie wymagają innej licencji.** Jeśli wsparcie licencji skończyło się przed datą wydania 2.8.0 (8.11.2026), po aktualizacji masz 14 dni na odnowienie wsparcia.
 - **Podatności:** wczytaj wynik skanera (Nessus, OpenVAS, Nmap) — rejestr zbuduje się sam. Katalog CISA KEV pobiera się raz na dobę (wymaga dostępu do cisa.gov); EPSS włączysz w zakładce Podatności.
@@ -117,7 +117,7 @@ Uruchom instalator 2.8.0 na istniejącym serwerze — dane, ustawienia i licencj
 - **Ocena ryzyka** działa od razu na alertach z ostatnich 7 dni; próg alertu RISK-01 (domyślnie 60) zmienisz w zakładce Ryzyko.
 - **Automatyzacje** nie robią nic, dopóki ich nie utworzysz (gotowe szablony w Ustawienia → Automatyzacje). Akcje reakcji z automatyzacji zawsze czekają na zatwierdzenie.
 - **Nowe akcje reakcji** (CrowdStrike, SentinelOne, usuwanie wiadomości z Microsoft 365) włączysz w Ustawienia → Reakcja. Usuwanie wiadomości wymaga uprawnienia aplikacji Mail.ReadWrite w Microsoft Graph.
-- Po aktualizacji uruchom **Ustawienia → Test reguł** — pokaże, czy Twoje progi i wyłączone reguły nie ukrywają podstawowych ataków.
+- Od 2.8.1 **test reguł uruchamia się sam** po każdej zmianie wyjątków, progów, wyłączeń i reguł oraz raz na dobę, i uwzględnia wyjątki alertów. Jeśli zmiana ukryje podstawowy atak, dostaniesz alert RT-01 z przyczyną, autorem zmiany i przyciskiem cofnięcia (**Ustawienia → Test reguł**).
 
 ## Aktualizacja do wersji 2.7
 

@@ -6,7 +6,7 @@
 
 Działa lokalnie na Windows Server · bez chmury · bez opłat za gigabajt logów · konsola po polsku i angielsku, także na telefonie
 
-[**⬇ Pobierz wersję 2.8.0**](https://github.com/podatnosci/straznica-soc/releases/latest) · [Instalacja](docs/INSTALACJA.md) · [Licencja](LICENSE.md) · [Zgłoś błąd](https://github.com/podatnosci/straznica-soc/issues) · [Kontakt](#kontakt-pilotaż-i-licencje)
+[**⬇ Pobierz wersję 2.8.1**](https://github.com/podatnosci/straznica-soc/releases/latest) · [Instalacja](docs/INSTALACJA.md) · [Licencja](LICENSE.md) · [Zgłoś błąd](https://github.com/podatnosci/straznica-soc/issues) · [Kontakt](#kontakt-pilotaż-i-licencje)
 
 </div>
 
@@ -72,17 +72,17 @@ Pliki są w zakładce [**Releases**](https://github.com/podatnosci/straznica-soc
 
 | Plik | Do czego |
 |---|---|
-| `StraznicaSOC-Serwer-Setup-2.8.0.exe` | serwer centralny z konsolą WWW (Windows Server od 2016 do 2025, Windows 10/11, 64-bit) |
+| `StraznicaSOC-Serwer-Setup-2.8.1.exe` | serwer centralny z konsolą WWW (Windows Server od 2016 do 2025, Windows 10/11, 64-bit) |
 | `StraznicaAgent-Setup.exe` | agent Windows zbierający dzienniki zdarzeń (do pobrania także z konsoli serwera) |
 | `install-straznica-agent-linux.sh` | agent Linux (journald, auditd, pliki logów) |
 | `install-straznica-agent-macos.sh` | agent macOS 12+ (dziennik ujednolicony, pliki logów, integralność plików) |
 | `SHA256SUMS.txt` | sumy kontrolne plików |
 
-Instalatory są podpisane cyfrowo (wydawca: Piotr Pęsiek). Przy pierwszym uruchomieniu Windows SmartScreen może pokazać ostrzeżenie, wybierz „Więcej informacji” → „Uruchom mimo to”. Sprawdzenie sumy: `Get-FileHash .\StraznicaSOC-Serwer-Setup-2.8.0.exe` i porównanie z `SHA256SUMS.txt`.
+Instalatory są podpisane cyfrowo (wydawca: Piotr Pęsiek). Przy pierwszym uruchomieniu Windows SmartScreen może pokazać ostrzeżenie, wybierz „Więcej informacji” → „Uruchom mimo to”. Sprawdzenie sumy: `Get-FileHash .\StraznicaSOC-Serwer-Setup-2.8.1.exe` i porównanie z `SHA256SUMS.txt`.
 
 ## Szybki start
 
-1. Zainstaluj `StraznicaSOC-Serwer-Setup-2.8.0.exe` (jako administrator). Usługa „Strażnica SOC” uruchomi się sama.
+1. Zainstaluj `StraznicaSOC-Serwer-Setup-2.8.1.exe` (jako administrator). Usługa „Strażnica SOC” uruchomi się sama.
 2. Otwórz `https://localhost:8443`, utwórz konto administratora.
 3. Wczytaj przykładowe lub własne logi przyciskiem **Wczytaj logi** albo zainstaluj agentów na serwerach.
 
