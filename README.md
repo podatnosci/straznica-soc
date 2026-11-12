@@ -6,7 +6,7 @@
 
 Działa lokalnie na Windows Server · bez chmury · bez opłat za gigabajt logów · konsola po polsku i angielsku, także na telefonie
 
-[**⬇ Pobierz wersję 2.8.2**](https://github.com/podatnosci/straznica-soc/releases/latest) · [Instalacja](docs/INSTALACJA.md) · [Licencja](LICENSE.md) · [Zgłoś błąd](https://github.com/podatnosci/straznica-soc/issues) · [Kontakt](#kontakt-pilotaż-i-licencje)
+[**⬇ Pobierz wersję 2.9.0**](https://github.com/podatnosci/straznica-soc/releases/latest) · [Instalacja](docs/INSTALACJA.md) · [Licencja](LICENSE.md) · [Zgłoś błąd](https://github.com/podatnosci/straznica-soc/issues) · [Kontakt](#kontakt-pilotaż-i-licencje)
 
 </div>
 
@@ -32,7 +32,7 @@ Działa lokalnie na Windows Server · bez chmury · bez opłat za gigabajt logó
 | 📋 **Zgłoszenia** | formularze NIS2/KSC na każdy etap: wczesne ostrzeżenie 24 h, zgłoszenie 72 h, raport pośredni, sprawozdanie z postępu, sprawozdanie końcowe; zgłoszenie naruszenia do UODO (art. 33 RODO), klasyfikacja i raporty DORA; przypomnienia o terminach |
 | ⚡ **Reakcja i automatyzacje** | zawsze po zatwierdzeniu przez człowieka: blokada adresu na FortiGate, pfSense i MikroTik, odcięcie konta i **wymuszenie zmiany hasła** w AD i Entra ID, izolacja komputera w **Microsoft Defender, CrowdStrike Falcon i SentinelOne**, **usunięcie wiadomości phishingowej ze wszystkich skrzynek Microsoft 365**; **automatyzacje KIEDY → WTEDY** (incydent, przypisanie, powiadomienie, wniosek o reakcję) |
 | 🧾 **Dowody** | łańcuch dowodowy (dziennik przekazania z łańcuchem skrótów) i pakiet dowodowy ZIP podpisany cyfrowo (Ed25519) do przekazania organom lub biegłym |
-| ✨ **Asystent AI (opcjonalny)** | podsumowanie incydentu dla zarządu, proponowane kroki, szkic zgłoszenia do CSIRT, pytania w języku naturalnym; domyślnie wyłączony, działa z modelem lokalnym (Ollama, LM Studio), pseudonimizacja danych przed wysłaniem |
+| ✨ **AI w SOC (opcjonalne)** | zasada: AI proponuje, testy i człowiek zatwierdzają — model nie ma uprawnień do działania. Ocena alertu z dowodami i miarą zgodności z analitykiem, **doradca strojenia, którego propozycje sprawdza test wykrywania** (propozycja ukrywająca atak jest blokowana), reguła Sigma z opisu (testy + dopasowania z 30 dni, zapis jako wyłączona), projekty zgłoszeń NIS2 i informacji dla zarządu, analiza phishingu (także polskie schematy oszustw), przegląd komunikatów CERT/KEV względem Twoich zasobów, pytania do sprawy ze źródłami. **Ochrona przed prompt injection** i reguła AI-01 wykrywająca polecenia dla AI ukryte w logach; ML-01 — lokalny model nietypowych wierszy poleceń. Dziennik AI, etykieta „wygenerowane przez AI” (AI Act art. 50), karta kompetencji AI (art. 4). Działa z modelem lokalnym (Ollama, LM Studio, vLLM) lub chmurowym, z pseudonimizacją danych |
 | 👥 **Praca zespołu** | **przekazanie zmiany** z terminami NIS2 i SLA na najbliższą dobę, własne pulpity, ćwiczenia tabletop z oceną czasu reakcji, incydenty z SLA i playbookami, oś czasu incydentu, wyszukiwarka z językiem zapytań, dyżury i eskalacja (SMS, połączenie, powiadomienie, Telegram, Signal), Jira / ServiceNow / GLPI, raporty PDF z logo firmy |
 | 🔐 **Dostęp i rozliczalność** | role (klient, odczyt, analityk, kierownik, administrator), logowanie przez SSO (Microsoft Entra ID, Google, Okta — OpenID Connect) i LDAP/Active Directory, weryfikacja dwuetapowa (TOTP), klucze API dla skryptów, dziennik audytu chroniony łańcuchem skrótów HMAC |
 | 📈 **Zachowanie kont (UEBA)** | profil każdego konta: hosty, kraje i pory logowań; alert przy pierwszym logowaniu na nowym hoście, z nowego kraju lub o nietypowej porze |
@@ -72,17 +72,17 @@ Pliki są w zakładce [**Releases**](https://github.com/podatnosci/straznica-soc
 
 | Plik | Do czego |
 |---|---|
-| `StraznicaSOC-Serwer-Setup-2.8.2.exe` | serwer centralny z konsolą WWW (Windows Server od 2016 do 2025, Windows 10/11, 64-bit) |
+| `StraznicaSOC-Serwer-Setup-2.9.0.exe` | serwer centralny z konsolą WWW (Windows Server od 2016 do 2025, Windows 10/11, 64-bit) |
 | `StraznicaAgent-Setup.exe` | agent Windows zbierający dzienniki zdarzeń (do pobrania także z konsoli serwera) |
 | `install-straznica-agent-linux.sh` | agent Linux (journald, auditd, pliki logów) |
 | `install-straznica-agent-macos.sh` | agent macOS 12+ (dziennik ujednolicony, pliki logów, integralność plików) |
 | `SHA256SUMS.txt` | sumy kontrolne plików |
 
-Instalatory są podpisane cyfrowo (wydawca: Piotr Pęsiek). Przy pierwszym uruchomieniu Windows SmartScreen może pokazać ostrzeżenie, wybierz „Więcej informacji” → „Uruchom mimo to”. Sprawdzenie sumy: `Get-FileHash .\StraznicaSOC-Serwer-Setup-2.8.2.exe` i porównanie z `SHA256SUMS.txt`.
+Instalatory są podpisane cyfrowo (wydawca: Piotr Pęsiek). Przy pierwszym uruchomieniu Windows SmartScreen może pokazać ostrzeżenie, wybierz „Więcej informacji” → „Uruchom mimo to”. Sprawdzenie sumy: `Get-FileHash .\StraznicaSOC-Serwer-Setup-2.9.0.exe` i porównanie z `SHA256SUMS.txt`.
 
 ## Szybki start
 
-1. Zainstaluj `StraznicaSOC-Serwer-Setup-2.8.2.exe` (jako administrator). Usługa „Strażnica SOC” uruchomi się sama.
+1. Zainstaluj `StraznicaSOC-Serwer-Setup-2.9.0.exe` (jako administrator). Usługa „Strażnica SOC” uruchomi się sama.
 2. Otwórz `https://localhost:8443`, utwórz konto administratora.
 3. Wczytaj przykładowe lub własne logi przyciskiem **Wczytaj logi** albo zainstaluj agentów na serwerach.
 

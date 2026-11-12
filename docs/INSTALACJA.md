@@ -2,7 +2,7 @@
 
 ## Serwer
 
-1. Uruchom `StraznicaSOC-Serwer-Setup-2.8.2.exe` **jako administrator**. Jeśli Windows SmartScreen pokaże ostrzeżenie, wybierz „Więcej informacji” → „Uruchom mimo to”.
+1. Uruchom `StraznicaSOC-Serwer-Setup-2.9.0.exe` **jako administrator**. Jeśli Windows SmartScreen pokaże ostrzeżenie, wybierz „Więcej informacji” → „Uruchom mimo to”.
 2. Na stronie „Ustawienia sieci” podaj porty (domyślnie 8443 dla konsoli i 514 dla syslog). Pozostaw zaznaczone dodanie certyfikatu do zaufanych i otwarcie portów w Zaporze Windows.
 3. Instalator:
    - kopiuje program do `C:\Program Files\Straznica SOC`;
@@ -20,7 +20,7 @@ Get-Content C:\ProgramData\StraznicaSOC\logs\*.log -Tail 30
 Instalacja cicha:
 
 ```
-StraznicaSOC-Serwer-Setup-2.8.2.exe /S /PORT=8443 /SYSLOGPORT=514
+StraznicaSOC-Serwer-Setup-2.9.0.exe /S /PORT=8443 /SYSLOGPORT=514
 ```
 
 **Aktualizacja** — uruchom nowy instalator na istniejącej instalacji. Dane zostają, baza aktualizuje się przy starcie. Przed aktualizacją skopiuj katalog `C:\ProgramData\StraznicaSOC`.
@@ -106,6 +106,21 @@ Kopia zapasowa: zatrzymaj usługę i skopiuj cały katalog `C:\ProgramData\Straz
 | „Limit hostów licencji” | nowe agenty ponad limit nie są przyjmowane, sprawdź **Ustawienia → Licencja** |
 
 Problem, którego tu nie ma? [Zgłoś go w Issues](https://github.com/podatnosci/straznica-soc/issues), dołącz wersję (`--version`) i ostatnie linie dziennika (bez danych firmy)
+
+## Aktualizacja do wersji 2.9
+
+Uruchom instalator 2.9.0 na istniejącym serwerze (także z 2.8.x i 2.7). Dane, ustawienia i licencja zostają; aktualizacja obejmuje też zmiany z 2.8 (opis niżej). Warto wiedzieć:
+
+- **AI pozostaje wyłączone, dopóki go nie włączysz** (Ustawienia → Asystent AI). Podaj adres punktu końcowego zgodnego z OpenAI i nazwę modelu, np. `http://localhost:11434/v1` i `qwen2.5:14b` dla Ollamy. Pseudonimizacja jest domyślnie włączona.
+- **Do czego AI nie ma dostępu:** nie zamyka alertów i nie zapisuje wyjątków ani reguł. Propozycje wyjątków przechodzą test wykrywania i wymagają zatwierdzenia. Reguły Sigma z opisu zapisują się jako wyłączone.
+- **Nowe funkcje AI** znajdziesz w Ustawienia → AI w SOC. Jest tam też dziennik AI i karta kompetencji AI dla analityków (AI Act art. 4); warto, żeby każdy analityk się z nią zapoznał. Doradca strojenia jest w Ustawienia → Test reguł, a projekty NIS2 i pytania do sprawy w zakładce incydentu „AI: NIS2 i pytania”.
+- **Reguły AI-01 i ML-01 działają bez modelu językowego**, od razu po aktualizacji:
+  - AI-01 wykrywa polecenia dla AI ukryte w logach;
+  - ML-01 uczy się na 30 dniach zdarzeń procesów w ciągu doby; możesz go też uczyć od razu przyciskiem „Ucz teraz”.
+  Próg i okno uczenia ML-01 zmienisz w Ustawienia → AI w SOC.
+- **Test wykrywania ma 17 scenariuszy** (nowy: polecenie dla AI w nagłówku User-Agent).
+- **Raport dla zarządu** ma nową sekcję „AI w SOC”.
+- **Przy usłudze chmurowej** sprawdź umowę powierzenia przetwarzania i lokalizację danych (RODO). Model lokalny (Ollama, LM Studio, vLLM) nie wysyła danych poza Twoją sieć.
 
 ## Aktualizacja do wersji 2.8
 
