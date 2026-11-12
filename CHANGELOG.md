@@ -1,5 +1,64 @@
 # Historia zmian
 
+## 2.9.0 2026-11-12
+
+**AI w SOC.** AI proponuje, a deterministyczne testy i człowiek zatwierdzają. Model nie ma żadnych uprawnień do działania: nie zamyka alertów i nie zapisuje wyjątków ani reguł. Asystent AI jest domyślnie wyłączony. Działa z dowolnym punktem końcowym zgodnym z OpenAI (Ollama, LM Studio, vLLM lokalnie albo usługa chmurowa). Dane są domyślnie pseudonimizowane.
+
+**Nowe**
+
+- **Odporność na wstrzykiwanie poleceń (prompt injection).** Logi, wiadomości i pliki trafiają do modelu wyłącznie jako niezaufane dane:
+  - dane są ogrodzone losowym znacznikiem, a znaczniki ról (`<|im_start|>`, `[INST]` itp.) są neutralizowane;
+  - prompt systemowy zabrania wykonywania poleceń z danych;
+  - odpowiedzi muszą mieć ścisły format JSON ze schematem, z jedną automatyczną próbą naprawy formatu.
+  Dotyczy to także dotychczasowych zadań asystenta (podsumowanie, kroki, zgłoszenie CSIRT).
+- **Reguła AI-01.** Wykrywa polecenia skierowane do modelu AI w polach zdarzeń: User-Agent, temat wiadomości, nazwa pliku, wiersz poleceń, URL itd., po polsku i po angielsku. Ważność 4, gdy polecenie próbuje zmienić ocenę alertu („mark as benign”, „oznacz jako bezpieczne”).
+- **Ocena alertu przez AI.** Dla alertu AI podaje:
+  - werdykt i pewność;
+  - dowody za zagrożeniem i za fałszywym alarmem;
+  - trzy kroki sprawdzenia.
+  Gdy w danych jest próba wstrzyknięcia, ocena nie może zostać obniżona do „fałszywy alarm” — zostaje podniesiona do „niejasne”, z ostrzeżeniem. Analityk klika „zgadzam się” lub „nie zgadzam się”. Zgodność liczy się też ze statusu alertu (fałszywy alarm albo incydent) i trafia do raportu dla zarządu.
+- **Doradca strojenia (Ustawienia → Test reguł).** AI proponuje wąskie wyjątki na podstawie najgłośniejszych reguł z 30 dni i alertów oznaczonych jako fałszywe.
+  - Każda propozycja przechodzi walidację: konkretna reguła, konkretna wartość, zakres nie szerszy niż /16, uzasadnienie.
+  - Następnie przechodzi test wykrywania z tą propozycją. Propozycja, która ukryłaby scenariusz ataku, jest blokowana i nie da się jej zatwierdzić.
+  - Wyjątek powstaje dopiero po zatwierdzeniu przez człowieka, z adnotacją „Propozycja AI zatwierdzona przez …” i terminem ważności.
+- **Reguła Sigma z opisu.** AI pisze regułę i przypadki testowe. Strażnica:
+  - uruchamia przypadki (wymagany co najmniej jeden pozytywny i jeden negatywny);
+  - liczy dopasowania w zdarzeniach z 30 dni;
+  - zapisuje regułę jako WYŁĄCZONĄ, z tagiem `straznica.ai_generated`.
+  Regułę włącza człowiek w Regułach.
+- **Projekty zgłoszeń NIS2** (wczesne ostrzeżenie w 24 h, zgłoszenie w 72 h, raport końcowy) i **informacja dla zarządu**. Znajdziesz je w nowej zakładce incydentu „AI: NIS2 i pytania”. Pola nieustalone są oznaczane [DO UZUPEŁNIENIA].
+- **Pytania do sprawy.** Odpowiedzi wyłącznie na podstawie danych incydentu (alerty, zdarzenia, notatki), z odnośnikami [A1], [Z3], [N2] rozwijanymi do źródeł. Odpowiedź bez poprawnych źródeł jest zastępowana przez „Nie wiem”.
+- **Analiza phishingu.** Obejmuje polskie schematy: zmiana numeru rachunku, „prezes prosi o przelew”, dopłata do przesyłki, e-Urząd Skarbowy.
+  - Wskaźniki IOC są ograniczone do tych, które dosłownie występują w wiadomości.
+  - Wiadomość z poleceniem dla AI nie może zostać uznana za prawidłową.
+  - Wskaźniki można dodać do listy IOC jednym kliknięciem.
+- **„Co z dzisiejszych komunikatów nas dotyczy”.** AI porównuje komunikaty CERT i producentów oraz nowe wpisy CISA KEV z listą zasobów i otwartymi podatnościami. „Dotyczy nas” zostaje tylko wtedy, gdy zasób lub CVE rzeczywiście występuje w organizacji; w pozostałych przypadkach ocena jest obniżana do „może dotyczyć”.
+- **Reguła ML-01 — nietypowy wiersz poleceń.** Lokalny model statystyczny (n-gramy znakowe), bez modelu językowego; dane nie opuszczają serwera.
+  - Model jest uczony codziennie na 30 dniach zdarzeń procesów.
+  - Wskazuje nowe lub rzadkie programy, rzadkie fragmenty, nietypową długość i bloki base64.
+  - Nowy program uruchomiony z katalogu zapisywalnego przez użytkownika ma niższy próg.
+  - Okno uczenia i próg ustawisz w Ustawienia → AI w SOC.
+- **Dziennik AI.** Każde wywołanie modelu jest zapisywane: kto, kiedy, jakie zadanie, ile znaków wysłano, czy dane były pseudonimizowane, czy wykryto wstrzyknięcie, decyzja człowieka. Retencja 2 lata. Wywołania i decyzje trafiają też do dziennika audytu.
+- **Ustawienia → AI w SOC.** Zakładka zawiera:
+  - wskaźniki;
+  - kartę kompetencji AI dla analityka (AI Act art. 4) z potwierdzeniem zapoznania;
+  - phishing, komunikaty i regułę z opisu;
+  - model ML-01;
+  - dziennik AI.
+  Każdy wynik jest oznaczony „Wygenerowane przez AI — sprawdź przed decyzją” (AI Act art. 50).
+- **Raport kwartalny dla zarządu — sekcja „AI w SOC”.** Zawiera:
+  - liczbę wywołań;
+  - zgodność analityków z oceną AI;
+  - propozycje strojenia (zatwierdzone, zablokowane);
+  - próby wstrzyknięcia (AI-01) i nietypowe polecenia (ML-01);
+  - zalecenia przy niskiej zgodności albo po próbach manipulacji.
+- **Test wykrywania: scenariusz nr 17 „ai-inject”** — polecenie dla modelu AI ukryte w nagłówku User-Agent (T1027).
+
+**Zmiany**
+
+- Reguły Sigma: pola `Image` i `ParentImage` dla zdarzeń 4688 są odczytywane także z treści komunikatu (eksporty CSV/tekst bez pól strukturalnych).
+- API: `/api/ai29/*` (triage, tune, rule, phish, digest, ask, ml, log). Zadania `nis2_early`, `nis2_notif`, `nis2_final` i `board` są dostępne w `/api/ai/run`.
+
 ## 2.8.2 2026-11-09
 
 **Nowe**
